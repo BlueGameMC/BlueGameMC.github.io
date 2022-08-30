@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Grapple Hook - BlueGameMC</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+  </head>
+  <body style="background-color:rgb(37, 34, 39);">
+
+    <div class = "navbar-top" style="top:-40px; position:sticky; z-index:1000;">
+
+      <div class = "navbar-rectangle" style="height:130px; width:100%; background-color:rgb(17, 17, 17);">
+
+          <h1 style="position: absolute; color:rgb(202, 215, 224); font-size: 44px; top:-36px; left:30%;">BlueGameMC</h1>
+
+      </div>
+
+      <div class="link-images" style=" position: absolute; top:70px; z-index:1020;">
+      
+          <img id="HomeBase" src="../../Icons/HomeButtonBase.png" style="width:40px; height:30px; left: 60px; top:14px; position: absolute; margin-right: 40px;">
+          <img id="HomeTop" src="../../Icons/HomeButtonTop.png" style="width:50px; height:30px; left: 55px; top: -15px; position: absolute;">
+
+          <a id="HomeBound" href="../../" style="left: 60px; width: 40px; height: 60px; top:-15px; position:absolute; display: block;"> </a>
+
+          <img id="GameButton" src="../../Icons/GamesButton.png" style="width:55px; height:55px; left: 175px; top:-15px; position: absolute; margin-right: 40px;">
+          
+          <a id="GameBound" href="../../Games/" style="left: 175px; width: 55px; height: 55px; top:-15px; position:absolute; display: block;"> </a>
+
+          <img id="3DButton" src="../../Icons/3DButton.png" style="width:70px; height:55px; left: 300px; top:-15px; position: absolute; margin-right: 40px;">
+          
+          <a id="3DBound" href="../../3D/" style="left: 300px; width: 70px; height: 55px; top:-15px; position:absolute; display: block;"> </a>
+
+          <img id="MoreButton" src="../../Icons/MoreButton.png" style="width:55px; height:55px; left: 420px; top:-15px; position: absolute; margin-right: 40px;">
+                
+          <a id="MoreBound" href="../../More/" style="left: 420px; width: 55px; height: 55px; top:-15px; position:absolute; display: block;"> </a>
+
+          <script>
+
+              const BoundBox = document.getElementById("HomeBound");
+              const HomeBase = document.getElementById("HomeBase");
+              const HomeTop = document.getElementById("HomeTop");
+
+              var IntervalIDTop;
+              var IntervalIDBase;
+              var HomeRunning = false;
+
+              var VelTop = 3;
+              var iTop = 0;
+
+              var VelBase = 2;
+              var iBase = 0;
+
+              BoundBox.onmouseover = function() {
+
+                  if(!HomeRunning) {
+                      
+                      VelTop = 3;
+                      iTop = 0;
+
+                      VelBase = 2;
+                      iBase = 0;
+
+                      IntervalIDTop = setInterval(MouseOverTop, 7);
+                      IntervalIDBase = setInterval(MouseOverBase, 6);
+                  }
+              }
+               
+              function MouseOverTop() {
+
+                  HomeRunning = true;
+                  HomeTop.style.top = parseInt(HomeTop.style.top) - VelTop + "px";
+                  VelTop -= 0.1;
+                  iTop++;
+
+                  if(iTop === 52)
+                  {
+                      clearInterval(IntervalIDTop);
+                      HomeRunning = false;
+                      HomeTop.style.top = "-15px";
+                  }
+              }
+
+              function MouseOverBase() {
+
+                  HomeBase.style.top = parseInt(HomeBase.style.top) - VelBase + "px";
+                  VelBase -= 0.1;
+                  iBase++;
+
+                  if(iBase === 42)
+                  {
+
+                      clearInterval(IntervalIDBase);
+                      HomeBase.style.top = "14px";
+                  }
+              }
+
+              //-----------------------------------------------------------------------------------------------------------------------
+
+              const GameButton = document.getElementById("GameButton");
+              const GameBound = document.getElementById("GameBound");
+
+              var GameRunning = false;
+
+              var IntervalIDGame;
+
+              var iGame = 0;
+              var VelGame = 0;
+              var GameRot = 0;
+
+              GameBound.onmouseover = function() {
+
+                  if(!GameRunning) {
+                      IntervalIDGame = setInterval(MouseOverGame, 7);
+                      GameRunning = true;
+                  }
+
+                  function MouseOverGame() 
+                  {
+                      GameButton.style.transform = "rotate(" + GameRot + "deg)";
+                      iGame += 1;
+                      if(iGame < 136 / 2)
+                      {
+                          VelGame += 0.08;
+                      }
+                      else
+                      {
+                          VelGame -= 0.08;
+                      }
+
+                      GameRot += VelGame;
+
+                      if(iGame === 270 / 2)
+                      {
+                          clearInterval(IntervalIDGame);
+                          GameRunning = false;
+                          GameButton.style.transform = "rotate(0deg)";
+                          iGame = 0;
+                          VelGame = 0;
+                          GameRot = 0;
+                      }
+                  }
+
+              }
+
+              //-----------------------------------------------------------------------------------------------------------------------
+
+              const ThreeDButton = document.getElementById("3DButton");
+              const ThreeDBound = document.getElementById("3DBound");
+
+              var ThreeDRunning = false;
+
+              var IntervalID3D;
+
+              var i3D = 0;
+
+              ThreeDBound.onmouseover = function() {
+
+                  if(!ThreeDRunning) {
+                      IntervalID3D = setInterval(MouseOver3D, 7);
+                      ThreeDRunning = true;
+                      i3D = 0;
+                  }
+
+                  function MouseOver3D() 
+                  {
+                      
+                      i3D += 2;
+
+                      if(i3D <= 70)
+                      {
+                          ThreeDButton.style.width = (70 - i3D) + "px";
+                          ThreeDButton.style.left = (i3D / 2 + 300) + "px";
+                      }
+                      else
+                      {
+                          ThreeDButton.style.width = (i3D - 70) + "px";
+                          ThreeDButton.style.left = ((70 - i3D / 2) + 300) + "px";
+                      }
+
+                      if(i3D === 140)
+                      {
+                          clearInterval(IntervalID3D);
+                          ThreeDRunning = false;
+                          ThreeDButton.style.width = "70px";
+                          i3D = 0;
+                      }
+                  }
+
+              }      
+                  
+          </script>
+
+      </div>
+
+    </div>
+
+    <div id="unity-container" class="unity-desktop">
+      <canvas id="unity-canvas" width=960 height=600></canvas>
+      <div id="unity-loading-bar">
+        <div id="unity-logo"></div>
+        <div id="unity-progress-bar-empty">
+          <div id="unity-progress-bar-full"></div>
+        </div>
+      </div>
+      <div id="unity-warning"> </div>
+      <div id="unity-footer">
+        <div id="unity-fullscreen-button"></div>
+      </div>
+    </div>
+    <script>
+      var container = document.querySelector("#unity-container");
+      var canvas = document.querySelector("#unity-canvas");
+      var loadingBar = document.querySelector("#unity-loading-bar");
+      var progressBarFull = document.querySelector("#unity-progress-bar-full");
+      var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+      var warningBanner = document.querySelector("#unity-warning");
+
+      // Shows a temporary message banner/ribbon for a few seconds, or
+      // a permanent error message on top of the canvas if type=='error'.
+      // If type=='warning', a yellow highlight color is used.
+      // Modify or remove this function to customize the visually presented
+      // way that non-critical warnings and error messages are presented to the
+      // user.
+      function unityShowBanner(msg, type) {
+        function updateBannerVisibility() {
+          warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
+        }
+        var div = document.createElement('div');
+        div.innerHTML = msg;
+        warningBanner.appendChild(div);
+        if (type == 'error') div.style = 'background: red; padding: 10px;';
+        else {
+          if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
+          setTimeout(function() {
+            warningBanner.removeChild(div);
+            updateBannerVisibility();
+          }, 5000);
+        }
+        updateBannerVisibility();
+      }
+
+      var buildUrl = "Build";
+      var loaderUrl = buildUrl + "/GrappleHook.loader.js";
+      var config = {
+        dataUrl: buildUrl + "/GrappleHook.data",
+        frameworkUrl: buildUrl + "/GrappleHook.framework.js",
+        codeUrl: buildUrl + "/GrappleHook.wasm",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "BlueGameMCStudios",
+        productName: "Grapple Hook",
+        productVersion: "1.1",
+        showBanner: unityShowBanner,
+      };
+
+      // By default Unity keeps WebGL canvas render target size matched with
+      // the DOM size of the canvas element (scaled by window.devicePixelRatio)
+      // Set this to false if you want to decouple this synchronization from
+      // happening inside the engine, and you would instead like to size up
+      // the canvas DOM size and WebGL render target sizes yourself.
+      // config.matchWebGLToCanvasSize = false;
+
+      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        // Mobile device style: fill the whole browser client area with the game canvas:
+
+        var meta = document.createElement('meta');
+        meta.name = 'viewport';
+        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+        document.getElementsByTagName('head')[0].appendChild(meta);
+        container.className = "unity-mobile";
+
+        // To lower canvas resolution on mobile devices to gain some
+        // performance, uncomment the following line:
+        // config.devicePixelRatio = 1;
+
+        canvas.style.width = window.innerWidth + 'px';
+        canvas.style.height = window.innerHeight + 'px';
+
+        unityShowBanner('WebGL builds are not supported on mobile devices.');
+      } else {
+        // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
+
+        canvas.style.width = "960px";
+        canvas.style.height = "600px";
+      }
+
+      loadingBar.style.display = "block";
+
+      var script = document.createElement("script");
+      script.src = loaderUrl;
+      script.onload = () => {
+        createUnityInstance(canvas, config, (progress) => {
+          progressBarFull.style.width = 100 * progress + "%";
+        }).then((unityInstance) => {
+          loadingBar.style.display = "none";
+          fullscreenButton.onclick = () => {
+            unityInstance.SetFullscreen(1);
+          };
+        }).catch((message) => {
+          alert(message);
+        });
+      };
+      document.body.appendChild(script);
+    </script>
+  </body>
+</html>

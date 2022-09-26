@@ -9,5 +9,5 @@ body { padding: 0; margin: 0 }
 #unity-progress-bar-full { width: 0%; height: 18px; margin-top: 10px; background: url('progress-bar-full-dark.png') no-repeat center }
 #unity-footer { position: relative }
 .unity-mobile #unity-footer { display: none }
-#unity-fullscreen-button { float: right; width: 44px; height: 44px; transform: translateX(44px) translateY(-5px); background: url('FullscreenButton.png') no-repeat center }
+#unity-fullscreen-button { float: right; width: 44px; height: 44px; transform: translateX(44px) translateY(145px); background: url('FullscreenButton.png') no-repeat center }
 #unity-warning { position: absolute; left: 50%; top: 5%; transform: translate(-50%); background: white; padding: 10px; display: none }

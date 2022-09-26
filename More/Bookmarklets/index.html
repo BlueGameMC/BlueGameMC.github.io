@@ -1,1 +1,244 @@
-I have not made this part yet. Maybe I never will - BlueGameMC
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Bookmarklets - BlueGameMC</title>
+    </head>
+
+    <body style="background-color:rgb(37, 34, 39); margin:0px;">
+
+        <div class = "navbar-top" style="top:-40px; position:sticky; z-index:1000;">
+
+            <div class = "navbar-rectangle" style="height:130px; width:100%; background-color:rgb(17, 17, 17);">
+
+                <h1 style="position: absolute; color:rgb(202, 215, 224); font-size: 44px; top:-36px; left:30%;">BlueGameMC</h1>
+
+            </div>
+
+            <div class="link-images" style=" position: absolute; top:70px; z-index:1020;">
+            
+                <img id="HomeBase" src="../../Icons/HomeButtonBase.png" style="width:40px; height:30px; left: 60px; top:14px; position: absolute; margin-right: 40px;">
+                <img id="HomeTop" src="../../Icons/HomeButtonTop.png" style="width:50px; height:30px; left: 55px; top: -15px; position: absolute;">
+
+                <a id="HomeBound" href="../../" style="left: 60px; width: 40px; height: 60px; top:-15px; position:absolute; display: block;"> </a>
+
+                <img id="GameButton" src="../../Icons/GamesButton.png" style="width:55px; height:55px; left: 175px; top:-15px; position: absolute; margin-right: 40px;">
+                
+                <a id="GameBound" href="../../Games/" style="left: 175px; width: 55px; height: 55px; top:-15px; position:absolute; display: block;"> </a>
+
+                <img id="3DButton" src="../../Icons/3DButton.png" style="width:70px; height:55px; left: 300px; top:-15px; position: absolute; margin-right: 40px;">
+                
+                <a id="3DBound" href="../../3D/" style="left: 300px; width: 70px; height: 55px; top:-15px; position:absolute; display: block;"> </a>
+
+                <img id="MoreButton" src="../../Icons/MoreButton.png" style="width:55px; height:55px; left: 420px; top:-15px; position: absolute; margin-right: 40px;">
+                
+                <a id="MoreBound" href="../../More/" style="left: 420px; width: 55px; height: 55px; top:-15px; position:absolute; display: block;"> </a>
+
+                <script>
+
+                    const BoundBox = document.getElementById("HomeBound");
+                    const HomeBase = document.getElementById("HomeBase");
+                    const HomeTop = document.getElementById("HomeTop");
+
+                    var IntervalIDTop;
+                    var IntervalIDBase;
+                    var HomeRunning = false;
+
+                    var VelTop = 3;
+                    var iTop = 0;
+
+                    var VelBase = 2;
+                    var iBase = 0;
+
+                    BoundBox.onmouseover = function() {
+
+                        if(!HomeRunning) {
+                            
+                            VelTop = 3;
+                            iTop = 0;
+
+                            VelBase = 2;
+                            iBase = 0;
+
+                            IntervalIDTop = setInterval(MouseOverTop, 7);
+                            IntervalIDBase = setInterval(MouseOverBase, 6);
+                        }
+                    }
+                     
+                    function MouseOverTop() {
+
+                        HomeRunning = true;
+                        HomeTop.style.top = parseInt(HomeTop.style.top) - VelTop + "px";
+                        VelTop -= 0.1;
+                        iTop++;
+
+                        if(iTop === 52)
+                        {
+                            clearInterval(IntervalIDTop);
+                            HomeRunning = false;
+                            HomeTop.style.top = "-15px";
+                        }
+                    }
+
+                    function MouseOverBase() {
+
+                        HomeBase.style.top = parseInt(HomeBase.style.top) - VelBase + "px";
+                        VelBase -= 0.1;
+                        iBase++;
+
+                        if(iBase === 42)
+                        {
+
+                            clearInterval(IntervalIDBase);
+                            HomeBase.style.top = "14px";
+                        }
+                    }
+
+                    //-----------------------------------------------------------------------------------------------------------------------
+
+                    const GameButton = document.getElementById("GameButton");
+                    const GameBound = document.getElementById("GameBound");
+
+                    var GameRunning = false;
+
+                    var IntervalIDGame;
+
+                    var iGame = 0;
+                    var VelGame = 0;
+                    var GameRot = 0;
+
+                    GameBound.onmouseover = function() {
+
+                        if(!GameRunning) {
+                            IntervalIDGame = setInterval(MouseOverGame, 7);
+                            GameRunning = true;
+                        }
+
+                        function MouseOverGame() 
+                        {
+                            GameButton.style.transform = "rotate(" + GameRot + "deg)";
+                            iGame += 1;
+                            if(iGame < 136 / 2)
+                            {
+                                VelGame += 0.08;
+                            }
+                            else
+                            {
+                                VelGame -= 0.08;
+                            }
+
+                            GameRot += VelGame;
+
+                            if(iGame === 270 / 2)
+                            {
+                                clearInterval(IntervalIDGame);
+                                GameRunning = false;
+                                GameButton.style.transform = "rotate(0deg)";
+                                iGame = 0;
+                                VelGame = 0;
+                                GameRot = 0;
+                            }
+                        }
+
+                    }
+
+                    //-----------------------------------------------------------------------------------------------------------------------
+
+                    const ThreeDButton = document.getElementById("3DButton");
+                    const ThreeDBound = document.getElementById("3DBound");
+
+                    var ThreeDRunning = false;
+
+                    var IntervalID3D;
+
+                    var i3D = 0;
+
+                    ThreeDBound.onmouseover = function() {
+
+                        if(!ThreeDRunning) {
+                            IntervalID3D = setInterval(MouseOver3D, 7);
+                            ThreeDRunning = true;
+                            i3D = 0;
+                        }
+
+                        function MouseOver3D() 
+                        {
+                            
+                            i3D += 2;
+
+                            if(i3D <= 70)
+                            {
+                                ThreeDButton.style.width = (70 - i3D) + "px";
+                                ThreeDButton.style.left = (i3D / 2 + 300) + "px";
+                            }
+                            else
+                            {
+                                ThreeDButton.style.width = (i3D - 70) + "px";
+                                ThreeDButton.style.left = ((70 - i3D / 2) + 300) + "px";
+                            }
+
+                            if(i3D === 140)
+                            {
+                                clearInterval(IntervalID3D);
+                                ThreeDRunning = false;
+                                ThreeDButton.style.width = "70px";
+                                i3D = 0;
+                            }
+                        }
+
+                    }      
+                        
+                </script>
+
+
+
+            </div>
+
+        </div>
+
+        <h1 style="margin-top:50px; color:rgb(202, 215, 224); font-size: 48px; text-indent: 10%;">Bookmarklets</h1>
+
+        <div style="margin:10px; color:rgb(150, 168, 168); font-size: 44px; text-indent: 3em; position: relative;">
+
+            <p>
+                Bookmarklets are pieces of Javascript code put in a bookmark. This website is a list of tools, games, and strange creations.
+            </p>
+
+            <p>
+                You can install bookmarklets by dragging the links into the bookmarks bar, and you can run it by clicking the bookmark!
+            </p>
+
+        </div>
+
+        <div style="width: 100%; height: 60px;">
+
+        </div>
+
+        <div style="color:rgb(150, 168, 168); font-size: 36px; text-indent: 3em; position: relative; margin: 10px;">
+
+            
+            <p>
+                <a href="javascript:(function()%7Bdocument.querySelector('video').currentTime %3D document.querySelector('video').duration%7D)()%3B">Skip Ad</a>
+                This bookmark skips Youtube ads. Just click it while the ad is playing, and it will instantly be skipped!
+            </p>
+
+            <p>
+                <a href="javascript:var speed = window.prompt('What speed do you want the video to play? (Number) ','3'); document.querySelector(%27video%27).playbackRate = parseInt(speed);">Change Speed</a>
+                This bookmarklet can speed up or slow down Youtube videos to speeds much faster than the normal youtube limit!
+            </p>
+
+            <p>
+                <a href="javascript:var textNodes = findTextNodes(document.body); function findTextNodes(root) {var nodes = [];var walker = document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null,false); var node;  while (node = walker.nextNode()) {nodes.push(node);} return nodes;} for (var i = 0; i < textNodes.length; i++) {  var node = textNodes[i];  var parent = node.parentNode;  var text = reverseString(textNodes[i].textContent);  var newNode = document.createElement('span');  newNode.innerHTML = text;  parent.replaceChild(newNode, node);}function reverseString(str) {var splitString = str.split('');var reverseArray = splitString.reverse();var joinArray = reverseArray.join('');return joinArray; } flipImages(); function flipImages() {var images = document.getElementsByTagName('img'); for (var i = 0; i < images.length; i++) {    var img = images[i];if(img.style.transform == 'scaleX(-1)') {img.style.transform = 'scaleX(1)';}else{img.style.transform = 'scaleX(-1)';}}}">pilF</a>
+                Flips all text and images on the site.
+            </p>
+
+            <p style="font-size: 55px;">
+                More Coming Soon!
+            </p>
+
+        </div>
+
+    </body>
+
+</html>

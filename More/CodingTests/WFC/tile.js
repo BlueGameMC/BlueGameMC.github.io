@@ -27,7 +27,7 @@ class Tile
         }
 
         return new Tile(newImg, newEdges);
-
+        
     }
 
 }

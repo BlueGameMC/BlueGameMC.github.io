@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Flappy bird</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <script src="Matrix.js"></script>
+    <script src="NN.js"></script>
+
+  </head>
+
+  <body>
+    <canvas id="canvas" style="width: 400px; height: 400px;"></canvas>
+    <input type="range" min="1" max="100" value="1" class="slider" id="speedSlider">
+    <text id="genText">Generation: </text>
+
+    <script src="bird.js"></script>
+    <script src="pipe.js"></script>
+    <script src="sketch.js"></script>
+  </body>
+</html>
